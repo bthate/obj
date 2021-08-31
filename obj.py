@@ -20,6 +20,10 @@ class NoModule(Exception):
 
     pass
 
+class NoPickle(Exception):
+
+    pass
+
 
 class NoType(Exception):
 
@@ -45,17 +49,16 @@ class Object:
         if args:
             self.__dict__.update(args[0])
 
-    @staticmethod
-    def __default__(oo):
-        if isinstance(oo, Object):
-            return vars(oo)
-        if isinstance(oo, dict):
-            return oo.items()
-        if isinstance(oo, list):
-            return iter(oo)
-        if isinstance(oo, (type(str), type(True), type(False), type(int), type(float))):
-            return oo
-        return oqn(oo)
+    def __default__(self):
+        if isinstance(self, Object):
+            return vars(self)
+        if isinstance(self, dict):
+            return self.items()
+        if isinstance(self, list):
+            return iter(self)
+        if isinstance(self, (type(str), type(True), type(False), type(int), type(float))):
+            return self
+        return oqn(self)
 
     def __oqn__(self):
         return "<%s.%s object at %s>" % (
@@ -73,6 +76,9 @@ class Object:
         if k in self:
             del self.__dict__[k]
 
+    def __eq__(self, o):
+        return len(self) == len(o)
+
     def __getitem__(self, k):
         return self.__dict__[k]
 
@@ -82,11 +88,29 @@ class Object:
     def __len__(self):
         return len(self.__dict__)
 
+    def __le__(self, o):
+        return len(self) <= len(o)
+
     def __lt__(self, o):
         return len(self) < len(o)
 
+    def __ge__(self, o):
+        return len(self) >= len(o)
+
+    def __gt__(self, o):
+        return len(self) > len(o)
+
+    def __hash__(self):
+        return id(self)
+
     def __setitem__(self, k, v):
         self.__dict__[k] = v
+
+    def __reduce__(self):
+        raise NoPickle
+
+    def __reduce__ex(self):
+        raise NoPickle
 
     def __repr__(self):
         return json(self)
