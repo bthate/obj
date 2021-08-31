@@ -1,1 +1,1 @@
-rm -fR  build dist MANIFEST Object.egg-info obj.egg-info bin/*~ *~ __pycache__  test/*~ test/__pycache__ .test
+rm -fR  build dist MANIFEST libobj.egg-info bin/*~ *~ __pycache__  test/*~ test/__pycache__ .test

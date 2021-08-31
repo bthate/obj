@@ -2,8 +2,6 @@
 
 "python3 object library"
 
-# imports
-
 import datetime
 import json as js
 import os
@@ -12,8 +10,6 @@ import sys
 import types
 import time
 import uuid
-
-# exceptions
 
 class NoFile(Exception):
 
@@ -33,7 +29,6 @@ class NoType(Exception):
 def __dir__():
     return ("NoFile","NoModule","NoType", "Object", "Default", "List" , "Db", "cdir", "edit", "fmt", "fns", "gettype", "hook", "get", "keys", "items", "last", "load", "register", "save", "set", "update", "values")
 
-# classes
 
 class Object:
 
@@ -215,7 +210,6 @@ class Db(Object):
             return (fnn, hook(fnn))
         return (None, None)
 
-# utilities
 
 def cdir(path):
     if os.path.exists(path):
@@ -223,6 +217,7 @@ def cdir(path):
     if path.split(os.sep)[-1].count(":") == 2:
         path = os.path.dirname(path)
     pathlib.Path(path).mkdir(parents=True, exist_ok=True)
+
 
 def fns(name, timed=None):
     if not name:
@@ -251,6 +246,7 @@ def fns(name, timed=None):
                     res.append(p)
     return sorted(res, key=fntime)
 
+
 def fntime(daystr):
     daystr = daystr.replace("_", ":")
     datestr = " ".join(daystr.split(os.sep)[-2:])
@@ -264,6 +260,7 @@ def fntime(daystr):
     else:
         t = 0
     return t
+
 
 def gettype(o):
     return str(type(o)).split()[-1][1:-2]
@@ -287,7 +284,6 @@ def hook(hfn):
         return o
     raise NoType(cname)
 
-# factored out methods and some
 
 def edit(self, setter, skip=True, skiplist=None):
     if skiplist is None:
@@ -412,6 +408,7 @@ def search(self, s):
         ok = True
     return ok
 
+
 def set(self, key, value):
     self.__dict__[key] = value
 
@@ -425,4 +422,3 @@ def update(self, data):
 
 def values(self):
     return self.__dict__.values()
-
