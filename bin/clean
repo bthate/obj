@@ -1,1 +1,1 @@
-rm -fR test/*~ test/__pycache__ .test build dist MANIFEST obj.egg-info bin/*~ *~
+rm -fR  build dist MANIFEST obj.egg-info bin/*~ *~ __pycache__  test/*~ test/__pycache__ .test

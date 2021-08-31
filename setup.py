@@ -15,6 +15,7 @@ setup(
     long_description=read(),
     license='OBJ is placed in the Public Domain, no Copyright, no LICENSE.',
     py_modules=["obj"],
+    zip_safe=False,
     classifiers=['Development Status :: 3 - Alpha',
                  'License :: Public Domain',
                  'Operating System :: Unix',
