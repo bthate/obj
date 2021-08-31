@@ -3,7 +3,7 @@
 import os
 import unittest
 
-from gcid.obj import Db, Object, gettype, load, last, merge, oqn, save
+from obj import Db, Object, gettype, load, last, oqn, save
 
 
 class Test_Object(unittest.TestCase):
@@ -22,7 +22,7 @@ class Test_Object(unittest.TestCase):
 
     def test_json(self):
         o = Object()
-        self.assertTrue("<gcid.obj.Object" in oqn(o))
+        self.assertTrue("<obj.Object" in oqn(o))
 
     def test_intern4(self):
         o = Object()
@@ -107,20 +107,6 @@ class Test_Object(unittest.TestCase):
         ooo = Object()
         p = last(ooo)
         self.assertEqual(ooo.bla, "mekker")
-
-    def test_merge(self):
-        o = Object()
-        o.a = 1
-        o.b = "1"
-        o.c = ["1"]
-        o.d = {"a": 1}
-        oo = Object()
-        oo.a = 1
-        oo.b = "1"
-        oo.c = ["1"]
-        oo.d = {"a": 1}
-        merge(oo, o)
-        self.assertEqual(o.c, ["1"])
 
     def test_nested(self):
         o = Object()

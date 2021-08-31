@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+# This file is placed in the Public Domain.
+
+import os, sys ; sys.path.insert(0, os.getcwd())
+
+import doctest
+import os
+import unittest
+
+from obj import Cfg
+
+flags = doctest.REPORT_NDIFF | doctest.FAIL_FAST | doctest.ELLIPSIS
+
+
+def main():
+    Cfg.wd = ".test"
+    pat = "test_%s*" % "*"
+    suite = unittest.loader.TestLoader().discover("test", pattern=pat)
+    unittest.TextTestRunner(verbosity=3).run(suite)
+
+
+main()

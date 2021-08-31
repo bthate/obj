@@ -2,7 +2,7 @@
 
 import unittest
 
-from ol import Object, dump, json
+from obj import Object, json
 
 class Test_JSON(unittest.TestCase):
     def test_jsondump(self):
