@@ -4,7 +4,7 @@ README
 NAME
 ====
 
-     **OBJ** - python3 object library
+     **Object** - python3 object library
 
 INSTALL
 =======
@@ -24,20 +24,20 @@ JSON data into.
 
 basic usage is this::
 
->>> from kmd.obj import Object
+>>> from obj import Object
 >>> o = Object()
 >>> o.key = "value"
 >>> o.key
 >>> 'value'
 
-objects try to mimic a dictionary while trying to be an object with normal
+Objects try to mimic a dictionary while trying to be an object with normal
 attribute access as well. hidden methods are provided, the methods are
 factored out into functions like get, items, keys, register, set, update
 and values.
 
 load/save from/to disk::
 
->>> from kmd.obj import Object, load, save
+>>> from obj import Object, load, save
 >>> o = Object()
 >>> o.key = "value"
 >>> p = save(o)
@@ -47,6 +47,13 @@ load/save from/to disk::
 >>> 'value'
 
 great for giving objects peristence by having their state stored in files.
+
+>>> from obj import Cfg, Object, save
+>>> Cfg.wd = ".test"
+>>> o = Object()
+>>> save(o)
+'obj.Object/e455c143-180e-4b43-bda2-9f09500cedba/2021-08-31/15:31:05.717063'
+
 
 FILES
 =====

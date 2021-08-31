@@ -6,14 +6,14 @@ def read():
     return open("README.rst", "r").read()
 
 setup(
-    name='obj',
-    version='100',
-    url='https://github.com/bthate/obj',
+    name='libobj',
+    version='200',
+    url='https://github.com/bthate/libobj',
     author='Bart Thate',
     author_email='bthate67@gmail.com', 
     description="python3 object library",
     long_description=read(),
-    license='OBJ is placed in the Public Domain, no Copyright, no LICENSE.',
+    license='libobj is placed in the Public Domain, no Copyright, no LICENSE.',
     py_modules=["obj"],
     zip_safe=False,
     classifiers=['Development Status :: 3 - Alpha',
