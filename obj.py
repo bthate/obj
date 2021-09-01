@@ -2,6 +2,8 @@
 
 "python3 object library"
 
+__version__ = 201
+
 import datetime
 import json as js
 import os
