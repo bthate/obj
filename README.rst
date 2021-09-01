@@ -4,12 +4,12 @@ README
 NAME
 ====
 
-     **Object** - python3 object library
+**libobj** - python3 object library
 
 INSTALL
 =======
 
-     sudo pip3 install obj
+sudo pip3 install libobj
 
 DESCRIPTION
 ===========
@@ -58,13 +58,13 @@ great for giving objects peristence by having their state stored in files.
 FILES
 =====
 
-| obj.py
+obj.py
 
 
 COPYRIGHT
 =========
 
-**OBJ** is placed in the Public Domain, no Copyright, no LICENSE.
+**libobj** is placed in the Public Domain, no Copyright, no LICENSE.
 
 
 AUTHOR
