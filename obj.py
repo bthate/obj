@@ -149,7 +149,16 @@ class Default(Object):
 
 class Cfg(Default):
 
-     wd = ""
+    pass
+
+class RunCfg(Default):
+
+    bork = False
+    console = False
+    daemon = False
+    debug = False
+    verbose = False 
+    wd = ""
 
 class Db(Object):
 
@@ -213,8 +222,9 @@ class Db(Object):
         return None
 
     def lastmatch(self, otype, selector=None, index=None, timed=None):
+        db = Db()
         res = sorted(
-            find(otype, selector, index, timed), key=lambda x: fntime(x[0])
+            db.find(otype, selector, index, timed), key=lambda x: fntime(x[0])
         )
         if res:
             return res[-1]
@@ -248,8 +258,8 @@ def cdir(path):
 def fns(name, timed=None):
     if not name:
         return []
-    assert Cfg.wd
-    p = os.path.join(Cfg.wd, "store", name) + os.sep
+    assert RunCfg.wd
+    p = os.path.join(RunCfg.wd, "store", name) + os.sep
     res = []
     d = ""
     for rootdir, dirs, _files in os.walk(p, topdown=False):
@@ -339,11 +349,11 @@ def fmt(self, keyz=None, empty=True, skip=None):
         skip = []
     res = []
     txt = ""
-    for key in sorted(keyz):
+    for key in keyz:
         if key in skip:
             continue
-        if key in self:
-            val = self[key]
+        if key in dir(self):
+            val = getattr(self, key, None)
             if empty and not val:
                 continue
             val = str(val).strip()
@@ -393,10 +403,10 @@ def last(self):
 def load(self, opath):
     if opath.count(os.sep) != 3:
         raise NoFile(opath)
-    assert Cfg.wd
+    assert RunCfg.wd
     splitted = opath.split(os.sep)
     stp = os.sep.join(splitted[-4:])
-    lpath = os.path.join(Cfg.wd, "store", stp)
+    lpath = os.path.join(RunCfg.wd, "store", stp)
     if os.path.exists(lpath):
         with open(lpath, "r") as ofile:
             d = js.load(ofile, object_hook=Object)
@@ -413,10 +423,10 @@ def register(self, k, v):
 
 
 def save(self, tab=False):
-    assert Cfg.wd
+    assert RunCfg.wd
     prv = os.sep.join(self.__stp__.split(os.sep)[:2])
     self.__stp__ = os.path.join(prv, os.sep.join(str(datetime.datetime.now()).split()))
-    opath = os.path.join(Cfg.wd, "store", self.__stp__)
+    opath = os.path.join(RunCfg.wd, "store", self.__stp__)
     cdir(opath)
     with open(opath, "w") as ofile:
         js.dump(self.__dict__, ofile, default=self.__default__, indent=4, sort_keys=True)
