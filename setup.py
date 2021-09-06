@@ -15,7 +15,7 @@ setup(
     long_description=read(),
     license='libobj is placed in the Public Domain, no Copyright, no LICENSE.',
     packages=["obj"],
-    zip_safe=False,
+    zip_safe=True,
     classifiers=['Development Status :: 3 - Alpha',
                  'License :: Public Domain',
                  'Operating System :: Unix',
