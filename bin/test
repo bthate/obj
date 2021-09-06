@@ -7,13 +7,13 @@ import doctest
 import os
 import unittest
 
-from obj import Cfg
+from obj import RunCfg
 
 flags = doctest.REPORT_NDIFF | doctest.FAIL_FAST | doctest.ELLIPSIS
 
 
 def main():
-    Cfg.wd = ".test"
+    RunCfg.wd = ".test"
     pat = "test_%s*" % "*"
     suite = unittest.loader.TestLoader().discover("test", pattern=pat)
     unittest.TextTestRunner(verbosity=3).run(suite)

@@ -14,7 +14,7 @@ setup(
     description="python3 object library",
     long_description=read(),
     license='libobj is placed in the Public Domain, no Copyright, no LICENSE.',
-    py_modules=["obj"],
+    packages=["obj"],
     zip_safe=False,
     classifiers=['Development Status :: 3 - Alpha',
                  'License :: Public Domain',
