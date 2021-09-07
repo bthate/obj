@@ -157,6 +157,7 @@ class RunCfg(Default):
     console = False
     daemon = False
     debug = False
+    systemd = False
     verbose = False 
     wd = ""
 

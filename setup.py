@@ -7,7 +7,7 @@ def read():
 
 setup(
     name='libobj',
-    version='202',
+    version='203',
     url='https://github.com/bthate/libobj',
     author='Bart Thate',
     author_email='bthate67@gmail.com', 
